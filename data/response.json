@@ -1,0 +1,60 @@
+[
+  {
+    "met_flag": true,
+    "stmts": [
+      {
+        "title": "Statement 0",
+        "met_flag": true,
+        "exp": [
+          {
+            "descr": "Group - Z",
+            "path": ["classes"],
+            "index": [1],
+            "met_flag": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "met_flag": false,
+    "stmts": [
+      {
+        "title": "Statement 0",
+        "met_flag": false,
+        "exp": [
+          {
+            "descr": "Exact - ENG 101",
+            "path": ["classes"],
+            "index": [],
+            "met_flag": false
+          },
+          {
+            "descr": "Exact - ENG 102",
+            "path": ["classes"],
+            "index": [],
+            "met_flag": false
+          },
+          {
+            "descr": "Exact - ENG 1055",
+            "path": ["classes"],
+            "index": [],
+            "met_flag": false
+          },
+          {
+            "descr": "Exact - ENG 107",
+            "path": ["classes"],
+            "index": [],
+            "met_flag": false
+          },
+          {
+            "descr": "Exact - ENG 108",
+            "path": ["classes"],
+            "index": [],
+            "met_flag": false
+          }
+        ]
+      }
+    ]
+  }
+]

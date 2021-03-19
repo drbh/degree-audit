@@ -1,0 +1,56 @@
+{
+    "name": "drbh",
+    "majors": ["+44 1234567", "+44 2345678"],
+    "classes": [
+        {
+            "when": 0,
+            "grade": 0,
+            "class": {
+                "hours": 10,
+                "subject": "SCI",
+                "level": 100,
+                "group": ["MA", "C", "LA"]
+            }
+        },
+        {
+            "when": 0,
+            "grade": 0,
+            "class": {
+                "hours": 25,
+                "subject": "SCI",
+                "level": 200,
+                "group": ["C"]
+            }
+        },
+        {
+            "when": 0,
+            "grade": 0,
+            "class": {
+                "hours": 5,
+                "subject": "SCI",
+                "level": 500,
+                "group": ["LA"]
+            }
+        },
+        {
+            "when": 0,
+            "grade": 0,
+            "class": {
+                "hours": 50,
+                "subject": "ENG",
+                "level": 600,
+                "group": ["MA", "C", "LA"]
+            }
+        },
+        {
+            "when": 0,
+            "grade": 0,
+            "class": {
+                "hours": 50,
+                "subject": "ENG",
+                "level": 108,
+                "group": ["MA", "C", "LA"]
+            }
+        }
+    ]
+}
