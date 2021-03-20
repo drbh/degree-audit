@@ -102,7 +102,7 @@ async fn main() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_web=info");
     env_logger::init();
 
-    println!("Degree Audit Server is running at 127.0.0.1:8080");
+    println!("Degree Audit Server is running at 127.0.0.1:9966");
 
     HttpServer::new(|| {
         App::new()
@@ -111,7 +111,7 @@ async fn main() -> std::io::Result<()> {
             .data(web::JsonConfig::default().limit(4096)) // <- limit size of the payload (global configuration)
             .service(web::resource("/audit").route(web::post().to(execute_audit)))
     })
-    .bind("127.0.0.1:8080")?
+    .bind("127.0.0.1:9966")?
     .run()
     .await
 }

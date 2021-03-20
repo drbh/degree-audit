@@ -23,7 +23,7 @@ cargo build --release
 
 ```bash
 ./target/release/serve
-# Degree Audit Server is running at 127.0.0.1:8080
+# Degree Audit Server is running at 127.0.0.1:9966
 ```
 
 ## Important concepts
