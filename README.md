@@ -30,7 +30,7 @@ cargo build --release
 
 A student is modeled like
 
-```json
+```rust
 {
 	"student": {
 		"name": "drbh",
@@ -55,7 +55,7 @@ A student is modeled like
 
 A task map is modeled like
 
-```json
+```rust
 {
 	"map": [
 		// this is a list of requirements
@@ -96,9 +96,9 @@ We mentioned that the logicmap is doing most of the work - however in order to i
 
 We have simple types to start with for now.
 
--   Exact Match (the same subject and level)
--   Subject Match (the same subject)
--   Group Match (class contains the group type)
+- Exact Match (the same subject and level)
+- Subject Match (the same subject)
+- Group Match (class contains the group type)
 
 however as more match types are uncovered they're easily added by adding a new match `struct` and `expression` like [the exact match example](src/exact.rs)
 
@@ -106,7 +106,7 @@ however as more match types are uncovered they're easily added by adding a new m
 
 Finally now that we've covered how this all works. Lets look at some results
 
-```json
+```rust
 [
 	{
 		"met_flag": true, // this is the card level
