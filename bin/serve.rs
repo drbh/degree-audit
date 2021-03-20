@@ -1,5 +1,6 @@
 use actix_web::{middleware, web, App, HttpResponse, HttpServer};
-use degree_audit::{build_degree, Config, ExactMatch, GroupMatch, Student};
+use degree_audit::{build_degree, ExactMatch, GroupMatch, Student};
+use logicmap::Config;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
@@ -36,7 +37,7 @@ pub enum MatchType {
 }
 
 pub type MajorMap = Vec<Vec<Requirements>>;
-pub type CardConfig = Vec<Vec<Box<dyn Config>>>;
+pub type CardConfig = Vec<Vec<Box<dyn Config<Student>>>>;
 
 pub fn execute_raw(student: Student, major_map: DegreeMap) -> Vec<logicmap::CardResult> {
     let mut my_cards: Vec<CardConfig> = Vec::new();
@@ -47,7 +48,7 @@ pub fn execute_raw(student: Student, major_map: DegreeMap) -> Vec<logicmap::Card
             for card in &req.card {
                 // let card_configs: Vec<Box<dyn Config>> = Vec::new();
 
-                let mut translated_bricks: Vec<Box<dyn Config>> = Vec::new();
+                let mut translated_bricks: Vec<Box<dyn Config<Student>>> = Vec::new();
                 for stmt in card {
                     match stmt.match_type {
                         MatchType::Exact => {
