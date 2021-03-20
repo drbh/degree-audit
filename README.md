@@ -32,24 +32,24 @@ A student is modeled like
 
 ```rust
 {
-	"student": {
-		"name": "drbh",
-		"majors": ["beekeeping", "algorithimic trading"],
-		"classes": [
-			// this is a class experience
-			{
-				"when": 0,
-				"grade": 0,
-				// this is a class
-				"class": {
-					"hours": 10,
-					"subject": "SCI",
-					"level": 100,
-					"group": ["MA", "C", "Z"]
-				}
-			}
-		]
-	}
+  "student": {
+    "name": "drbh",
+    "majors": ["beekeeping", "algorithimic trading"],
+    "classes": [
+      // this is a class experience
+      {
+        "when": 0,
+        "grade": 0,
+        // this is a class
+        "class": {
+          "hours": 10,
+          "subject": "SCI",
+          "level": 100,
+          "group": ["MA", "C", "Z"]
+        }
+      }
+    ]
+  }
 }
 ```
 
@@ -57,26 +57,26 @@ A task map is modeled like
 
 ```rust
 {
-	"map": [
-		// this is a list of requirements
-		[
-			// this is a requirement
-			{
-				"original": "Mathematics (MA)",
-				// requirements have cards
-				"card": [
-					// this is the first statement
-					[
-						// this is a brick
-						{
-							"match_type": "Group",
-							"group": "Z"
-						}
-					]
-				]
-			}
-		]
-	]
+  "map": [
+    // this is a list of requirements
+    [
+      // this is a requirement
+      {
+        "original": "Mathematics (MA)",
+        // requirements have cards
+        "card": [
+          // this is the first statement
+          [
+            // this is a brick
+            {
+              "match_type": "Group",
+              "group": "Z"
+            }
+          ]
+        ]
+      }
+    ]
+  ]
 }
 ```
 
@@ -108,22 +108,22 @@ Finally now that we've covered how this all works. Lets look at some results
 
 ```rust
 [
-	{
-		"met_flag": true, // this is the card level
-		"stmts": [
-			{
-				"title": "Statement 0",
-				"met_flag": true, // this is the statement level
-				"exp": [
-					{
-						"descr": "Group - Z",
-						"path": ["classes"], // the path to what trigged this brick
-						"index": [0], // this is the index of the path
-						"met_flag": true // this is the brick level
-					}
-				]
-			}
-		]
-	}
+  {
+    "met_flag": true, // this is the card level
+    "stmts": [
+      {
+        "title": "Statement 0",
+        "met_flag": true, // this is the statement level
+        "exp": [
+          {
+            "descr": "Group - Z",
+            "path": ["classes"], // the path to what trigged this brick
+            "index": [0], // this is the index of the path
+            "met_flag": true // this is the brick level
+          }
+        ]
+      }
+    ]
+  }
 ]
 ```
