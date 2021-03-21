@@ -19,12 +19,54 @@ cd degree-audit
 cargo build --release
 ```
 
-## Run Degree Audit Server
+### Run Degree Audit Server
 
 ```bash
 ./target/release/serve
 # Degree Audit Server is running at 127.0.0.1:9966
 ```
+
+### Deploying Lambda
+
+```bash
+
+rustup target add x86_64-unknown-linux-musl
+
+#### if using OSX - must manually setup musl-gcc linker
+brew install filosottile/musl-cross/musl-cross
+mkdir .cargo
+echo $'[target.x86_64-unknown-linux-musl]\nlinker = "x86_64-linux-musl-gcc"' > .cargo/config
+ln -s /usr/local/bin/x86_64-linux-musl-gcc /usr/local/Cellar/musl-cross
+####
+
+# build binaries
+CC_x86_64_unknown_linux_musl=x86_64-linux-musl-gcc cargo build --release --target x86_64-unknown-linux-musl
+
+# lambda expects the binary to be named bootstrap
+cp ./target/x86_64-unknown-linux-musl/release/lambda ./bootstrap && zip lambda.zip bootstrap && rm bootstrap
+```
+
+
+```bash
+aws lambda create-function --function-name rustTest \
+  --handler doesnt.matter \
+  --zip-file fileb://./lambda.zip \
+  --runtime provided \
+  --role arn:aws:iam::XXXXXXXXXXXXX:role/your_lambda_execution_role \
+  --environment Variables={RUST_BACKTRACE=1} \
+  --tracing-config Mode=Active \
+  --profile personal
+```
+
+```bash
+aws lambda invoke \
+  --function-name rustTest \
+  --cli-binary-format raw-in-base64-out \
+  --payload '{"map": [[{"original": "Mathematics (MA)","card": [[{"match_type": "Group","group": "MA"}]]}]],"student": {"name": "drbh","majors": ["art","coffee"],"classes": [{"when": 0,"grade": 0,"class": {"hours": 10,"subject": "SCI","level": 100,"group": ["MA","C","LA"]}}]}}' \
+  --profile personal \
+  output.json
+```
+
 
 ## Important concepts
 
@@ -102,7 +144,7 @@ We have simple types to start with for now.
 
 however as more match types are uncovered they're easily added by adding a new match `struct` and `expression` like [the exact match example](src/exact.rs)
 
-## Understanding the evaluation
+### Understanding the evaluation
 
 Finally now that we've covered how this all works. Lets look at some results
 

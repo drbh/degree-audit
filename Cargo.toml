@@ -25,3 +25,5 @@ env_logger = "0.8.3"
 # aws lambda serverless
 lambda_runtime = "0.3.0"
 tokio = "1.3.0"
+simple_logger = "1.11.0"
+log = "0.4.14"

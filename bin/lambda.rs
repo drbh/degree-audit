@@ -3,9 +3,9 @@
 // { "command": "do something" }
 
 use lambda_runtime::{handler_fn, Context, Error};
-// use log::LevelFilter;
+use log::LevelFilter;
 use serde::{Deserialize, Serialize};
-// use simple_logger::SimpleLogger;
+use simple_logger::SimpleLogger;
 
 use degree_audit::{build_degree, ExactMatch, GroupMatch, Student};
 use logicmap::Config;
@@ -113,17 +113,17 @@ struct AuditInput {
 #[derive(Serialize)]
 struct Response {
     req_id: String,
-    msg: String,
+    msg: Vec<logicmap::CardResult>,
 }
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    // // required to enable CloudWatch error logging by the runtime
-    // // can be replaced with any other method of initializing `log`
-    // SimpleLogger::new()
-    //     .with_level(LevelFilter::Info)
-    //     .init()
-    //     .unwrap();
+    // required to enable CloudWatch error logging by the runtime
+    // can be replaced with any other method of initializing `log`
+    SimpleLogger::new()
+        .with_level(LevelFilter::Info)
+        .init()
+        .unwrap();
 
     let func = handler_fn(my_handler);
     lambda_runtime::run(func).await?;
@@ -133,13 +133,15 @@ async fn main() -> Result<(), Error> {
 pub(crate) async fn my_handler(event: AuditInput, ctx: Context) -> Result<Response, Error> {
     // extract some useful info from the request
     // let command = event.command;
+    println!("{:?}", event);
+    println!("{:?}", ctx);
+
     let result = execute_raw(event.student.clone(), event.map);
 
     // prepare the response
     let resp = Response {
         req_id: ctx.request_id,
-        // msg: format!("Command {} executed.", event.student.name),
-        msg: json!(result).to_string(),
+        msg: result,
     };
 
     // return `Response` (it will be serialized to JSON automatically by the runtime)
