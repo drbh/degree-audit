@@ -1,0 +1,27 @@
+[
+    [
+        {
+            "original": "Mathematics (MA)",
+            "card": [
+                [
+                    {
+                        "match_type": "Group",
+                        "group": "MA"
+                    }
+                ]
+            ]
+        },
+        {
+            "original": "Science",
+            "card": [
+                [
+                    { "match_type": "Exact", "subject": "SCIEN", "level": 102 },
+                    { "match_type": "Exact", "subject": "SCIEN", "level": 103 }
+                ],
+                [
+                    { "match_type": "Exact", "subject": "BOWL", "level": 300 }  
+                ]
+            ]
+        }
+    ]
+]
