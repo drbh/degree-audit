@@ -62,7 +62,7 @@ aws lambda create-function --function-name rustTest \
 aws lambda invoke \
   --function-name rustTest \
   --cli-binary-format raw-in-base64-out \
-  --payload '{"map": [[{"original": "Mathematics (MA)","card": [[{"match_type": "Group","group": "MA"}]]}]],"student": {"name": "drbh","majors": ["art","coffee"],"classes": [{"when": 0,"grade": 0,"class": {"hours": 10,"subject": "SCI","level": 100,"group": ["MA","C","LA"]}}]}}' \
+  --payload '{"isBase64Encoded": false,"timeEpoch": 1616375946835, "requestContext": {"timeEpoch": 1616375946835, "http": {"method": "POST"}}, "headers": {},"body": "{\"map\": [[{\"original\": \"Mathematics (MA)\", \"card\": [[{\"match_type\": \"Group\", \"group\": \"MA\"}]]}]], \"student\": {\"name\": \"drbh\", \"majors\": [\"art\", \"coffee\"], \"classes\": [{\"when\": 0, \"grade\": 0, \"class\": {\"hours\": 10, \"subject\": \"SCI\", \"level\": 100, \"group\": [\"MA\", \"C\", \"LA\"]}}]}}"}' \
   --profile personal \
   output.json
 ```

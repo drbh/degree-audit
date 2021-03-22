@@ -1,7 +1,3 @@
-// https://crates.io/crates/lambda_runtime
-// This example requires the following input to succeed:
-// { "command": "do something" }
-
 use lambda_runtime::{handler_fn, Context, Error};
 use log::LevelFilter;
 use serde::{Deserialize, Serialize};
@@ -9,8 +5,8 @@ use simple_logger::SimpleLogger;
 
 use degree_audit::{build_degree, ExactMatch, GroupMatch, Student};
 use logicmap::Config;
-// use serde::{Deserialize, Serialize};
 use serde_json::json;
+use aws_lambda_events::event::apigw::ApiGatewayV2httpRequest;
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct BrickInput {
@@ -114,6 +110,7 @@ struct AuditInput {
 struct Response {
     req_id: String,
     msg: Vec<logicmap::CardResult>,
+    // msg: String,
 }
 
 #[tokio::main]
@@ -130,13 +127,9 @@ async fn main() -> Result<(), Error> {
     Ok(())
 }
 
-pub(crate) async fn my_handler(event: AuditInput, ctx: Context) -> Result<Response, Error> {
-    // extract some useful info from the request
-    // let command = event.command;
-    println!("{:?}", event);
-    println!("{:?}", ctx);
-
-    let result = execute_raw(event.student.clone(), event.map);
+pub(crate) async fn my_handler(event: ApiGatewayV2httpRequest, ctx: Context) -> Result<Response, Error> {
+    let audit_input: AuditInput = serde_json::from_str(&event.body.unwrap()).expect("bad request body");
+    let result = execute_raw(audit_input.student.clone(), audit_input.map.clone());
 
     // prepare the response
     let resp = Response {

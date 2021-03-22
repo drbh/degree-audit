@@ -6,3 +6,4 @@ bak.bak.rs
 lambda.zip
 *.sh
 output.json
+examples/multi-schools-with-transfer/__pycache__
