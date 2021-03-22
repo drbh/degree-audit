@@ -26,6 +26,9 @@ cargo build --release
 # Degree Audit Server is running at 127.0.0.1:9966
 ```
 
+### Try in REST playground
+[https://reqbin.com/4ddwcqtn](https://reqbin.com/4ddwcqtn)
+
 ### Deploying Lambda
 
 ```bash

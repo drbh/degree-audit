@@ -12,12 +12,12 @@ working_request = {
             {
                 "original": "Mathematics (MA)",
                 "card": [
-                    [
-                        {
-                            "match_type": "Group",
-                            "group": "MA"
-                        }
-                    ]
+                        [
+                            {
+                                "match_type": "Group",
+                                "group": "MA"
+                            }
+                        ]
                 ]
             }
         ]
@@ -25,8 +25,8 @@ working_request = {
     "student": {
         "name": "drbh",
         "majors": [
-            "art",
-            "coffee"
+                "art",
+                "coffee"
         ],
         "classes": [
             {
@@ -47,11 +47,16 @@ working_request = {
     }
 }
 
+
 data = json.dumps(working_request)
 
-# response = requests.post('https://rkwy8keva8.execute-api.us-east-1.amazonaws.com/rustTest', headers=headers, data=data)
+## Make requests to hosted lambda
+response = requests.post(
+    'https://rkwy8keva8.execute-api.us-east-1.amazonaws.com/rustTest', headers=headers, data=data)
 
-response = requests.post('http://localhost:9966/audit',
-                         headers=headers, data=data)
+## Make requests to server
+# response = requests.post('http://localhost:9966/audit',
+#                          headers=headers, data=data)
 
-print(response.json())
+obj = response.json()
+print(json.dumps(obj, indent=4))
